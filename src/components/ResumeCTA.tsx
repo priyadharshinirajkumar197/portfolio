@@ -1,5 +1,6 @@
 import { useInView } from '../hooks/useInView'
 import { useTheme } from '../ThemeContext'
+import resumePdf from '@/imports/resume.pdf?url'
 
 export default function ResumeCTA() {
   const { ref, inView } = useInView()
@@ -41,7 +42,9 @@ export default function ResumeCTA() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="#"
+                href={resumePdf}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group flex items-center gap-2.5 font-body text-[13px] font-medium px-6 py-3 transition-colors duration-200 cursor-pointer shadow-md"
                 style={{ background: accent, color: btnFg }}
               >

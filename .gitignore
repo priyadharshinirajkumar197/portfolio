@@ -4,3 +4,24 @@ dist/
 .env.local
 .env.*.local
 .vercel/
+
+# One-off codemod / patch scripts written while debugging the dev server
+fix-*.cjs
+fix-*.js
+fix-*.mjs
+
+# Local API and dev-server smoke tests
+test-*.cjs
+test-*.js
+test-*.mjs
+start-server.cjs
+
+# Scratch media-extraction helpers
+extract_frames.mjs
+
+# Runtime logs and captured payloads
+*.log
+payload.json
+
+# Editor / workspace scratch
+work.code-workspace

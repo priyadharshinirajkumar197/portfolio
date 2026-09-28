@@ -72,7 +72,7 @@ export const projects: Project[] = [
     duration: '6 Weeks',
     platform: 'Desktop',
     tools: ['Figma', 'Miro', 'Notion', 'Inter'],
-    image: 'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1400&h=900&fit=crop&auto=format',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&h=900&fit=crop&auto=format',
     accentColor: '#A78BFA',
     liveUrl: 'https://bloodsync-ui.vercel.app/',
     pdfUrl: bloodSyncPDF,

@@ -6,10 +6,13 @@ interface NavProps {
   onNavigate: (page: string | null) => void
 }
 
+const SPY_IDS = ['work', 'resume', 'contact'] as const
+
 export default function Nav({ onNavigate }: NavProps) {
   const isDark = useTheme()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handle = () => setScrolled(window.scrollY > 80)
@@ -17,16 +20,50 @@ export default function Nav({ onNavigate }: NavProps) {
     return () => window.removeEventListener('scroll', handle)
   }, [])
 
+  // Scroll-spy: mark the last section whose top has crossed a line 40% down the
+  // viewport. Uses a rAF-throttled scroll listener (same approach as Work.tsx)
+  // rather than IntersectionObserver, because IntroFlow's #about anchor is a
+  // zero-height marker inside a pinned sequence and reports unusable overlap.
+  useEffect(() => {
+    let frame = 0
+
+    const update = () => {
+      const line = window.innerHeight * 0.4
+      let current = 'home'
+      for (const id of SPY_IDS) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= line) current = id
+      }
+      setActiveSection(current)
+    }
+
+    const onScroll = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(update)
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
+  }, [])
+
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
   }
 
+  const goHome = () => { onNavigate(null); window.scrollTo({ top: 0, behavior: 'smooth' }) }
+
   const links = [
-    { label: 'Home', action: () => { onNavigate(null); window.scrollTo({ top: 0, behavior: 'smooth' }) } },
-    { label: 'About', action: () => scrollTo('about') },
-    { label: 'Projects', action: () => scrollTo('work') },
-    { label: 'Contact', action: () => scrollTo('contact') },
+    { id: 'home', label: 'Home', action: goHome },
+    { id: 'about', label: 'About', action: () => scrollTo('about') },
+    { id: 'work', label: 'Projects', action: () => scrollTo('work') },
+    { id: 'resume', label: 'Resume', action: () => scrollTo('resume') },
   ]
 
   const pillBg     = isDark ? 'rgba(13,13,13,0.94)' : 'rgba(240,241,243,0.95)'
@@ -37,6 +74,7 @@ export default function Nav({ onNavigate }: NavProps) {
   const contactFg  = isDark ? '#0B0B12' : '#EEEDF8'
   const mobileBg   = isDark ? 'rgba(11,11,18,0.95)' : 'rgba(240,241,243,0.97)'
   const hamburgerC = isDark ? '#EEEDF8' : '#0E0F12'
+  const accent     = isDark ? '#A78BFA' : '#7C3AED'
 
   return (
     <>
@@ -61,12 +99,13 @@ export default function Nav({ onNavigate }: NavProps) {
           >
             <img src={profilePhoto} alt="Priyadharshini R" className="w-full h-full object-cover object-top" />
           </button>
-          {links.map(({ label, action }) => (
+          {links.map(({ id, label, action }) => (
             <button
-              key={label}
+              key={id}
               onClick={action}
               className="font-body text-[13px] transition-colors duration-200 px-4 py-2 rounded-full hover:text-[#A78BFA]"
-              style={{ color: linkFg }}
+              style={{ color: activeSection === id ? accent : linkFg }}
+              aria-current={activeSection === id ? 'page' : undefined}
             >
               {label}
             </button>
@@ -74,7 +113,13 @@ export default function Nav({ onNavigate }: NavProps) {
           <button
             onClick={() => scrollTo('contact')}
             className="font-body text-[13px] font-medium hover:bg-[#A78BFA] transition-colors duration-200 px-5 py-2 rounded-full ml-1"
-            style={{ background: contactBg, color: contactFg }}
+            style={{
+              background: contactBg,
+              color: contactFg,
+              outline: activeSection === 'contact' ? `1px solid ${accent}` : 'none',
+              outlineOffset: '2px',
+            }}
+            aria-current={activeSection === 'contact' ? 'page' : undefined}
           >
             Contact
           </button>
@@ -125,18 +170,31 @@ export default function Nav({ onNavigate }: NavProps) {
         <div
           className="transition-all duration-300 overflow-hidden backdrop-blur-xl"
           style={{
-            maxHeight: menuOpen ? '288px' : '0px',
+            maxHeight: menuOpen ? '352px' : '0px',
             padding: menuOpen ? '20px 0' : '0',
             background: mobileBg,
             borderBottom: menuOpen ? `1px solid ${borderCol}` : 'none',
           }}
         >
           <div className="px-5 flex flex-col gap-4">
-            {links.map(({ label, action }) => (
-              <button key={label} onClick={action} className="font-body text-[15px] text-left hover:text-[#A78BFA] transition-colors" style={{ color: linkFg }}>
+            {links.map(({ id, label, action }) => (
+              <button
+                key={id}
+                onClick={action}
+                className="font-body text-[15px] text-left hover:text-[#A78BFA] transition-colors"
+                style={{ color: activeSection === id ? accent : linkFg }}
+                aria-current={activeSection === id ? 'page' : undefined}
+              >
                 {label}
               </button>
             ))}
+            <button
+              onClick={() => scrollTo('contact')}
+              className="font-body text-[15px] font-medium self-start hover:bg-[#A78BFA] transition-colors duration-200 px-5 py-2 rounded-full"
+              style={{ background: contactBg, color: contactFg }}
+            >
+              Contact
+            </button>
           </div>
         </div>
       </nav>

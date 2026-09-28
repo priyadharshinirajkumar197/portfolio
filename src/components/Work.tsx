@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from '../hooks/useInView'
 import { useTheme } from '../ThemeContext'
+import { placeholderImage } from '../lib/media'
 import type { Project } from '../App'
 
 interface WorkProps {
@@ -22,6 +23,7 @@ function ProjectCard({
   const { ref, inView } = useInView()
   const [hovered, setHovered] = useState(false)
   const [parallax, setParallax] = useState(0)
+  const [imageFailed, setImageFailed] = useState(false)
   const cardRef = useRef<HTMLElement | null>(null)
   const isDark = useTheme()
 
@@ -83,8 +85,11 @@ function ProjectCard({
         }}
       >
         <img
-          src={project.image}
+          src={imageFailed ? placeholderImage(project.accentColor, project.id) : project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
+          onError={() => setImageFailed(true)}
           className="absolute -inset-y-[10%] w-full h-[120%] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           style={{ transform: `translateY(${parallax * -7}%) scale(${hovered ? 1.04 : 1})` }}
         />
@@ -163,24 +168,6 @@ export default function Work({ projects, onOpenProject }: WorkProps) {
               delay={i + 2}
             />
           ))}
-        </div>
-
-        {/* Footer link */}
-        <div className="border-t py-8 flex items-center justify-between" style={{ borderColor: border }}>
-          <p className="font-body text-[13px]" style={{ color: muted }}>
-            More projects coming soon — content & images being added.
-          </p>
-          <button
-            className="font-body text-[13px] flex items-center gap-2 transition-colors cursor-pointer"
-            style={{ color: muted }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = fg)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = muted)}
-          >
-            Browse all projects
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 10">
-              <path d="M1 5h12M8 1l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
         </div>
 
       </div>
