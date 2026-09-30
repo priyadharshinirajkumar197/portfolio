@@ -103,6 +103,18 @@ export default function Services() {
     willChange: 'opacity, transform',
   })
 
+  // Mobile image styles — in normal document flow
+  const mobileImageStyle: React.CSSProperties = {
+    width: '100%',
+    maxWidth: 360,
+    aspectRatio: '3/4',
+    borderRadius: 10,
+    overflow: 'hidden',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    opacity: layerOpacity,
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -166,10 +178,54 @@ export default function Services() {
               </div>
             </div>
 
-            {/* Right: reserved width so the list column doesn't expand
-                full-bleed — the actual traveling image is absolutely
-                positioned over this area */}
-            {!isMobile && <div className="lg:w-[42%] flex-shrink-0" />}
+            {/* Right: reserved width on desktop; on mobile, image in normal flow */}
+            {isMobile ? (
+              <div className="w-full flex justify-center pt-8 lg:pt-0">
+                <div style={mobileImageStyle}>
+                  <div style={{ width: '100%', height: '100%', perspective: '1400px' }}>
+                    <div
+                      style={{
+                        width: '100%', height: '100%', position: 'relative',
+                        transformStyle: 'preserve-3d',
+                        transform: `rotateY(${flipAngle}deg)`,
+                      }}
+                    >
+                      {/* Front face — work image */}
+                      <div
+                        style={{
+                          position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
+                          backfaceVisibility: 'hidden', transform: 'rotateY(0deg)',
+                        }}
+                      >
+                        <img
+                          src={WORK_IMG}
+                          alt="UI/UX design work"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
+                        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.35) 0%, transparent 60%)' }} />
+                      </div>
+
+                      {/* Back face — portrait, revealed once the flip passes edge-on */}
+                      <div
+                        style={{
+                          position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
+                          backfaceVisibility: 'hidden', transform: 'rotateY(180deg)',
+                        }}
+                      >
+                        <img
+                          src={profilePhoto}
+                          alt="Priyadharshini R"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
+                        />
+                        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.4) 0%, transparent 55%)' }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="lg:w-[42%] flex-shrink-0" />
+            )}
           </div>
         </div>
 
@@ -179,47 +235,49 @@ export default function Services() {
             reveals the portrait on the back face at the same tilt once
             it rotates through edge-on at the movement's midpoint.
         ═══════════════════════════════════════════════════════════ */}
-        <div style={card(layerOpacity)}>
-          <div style={{ width: '100%', height: '100%', perspective: '1400px' }}>
-            <div
-              style={{
-                width: '100%', height: '100%', position: 'relative',
-                transformStyle: 'preserve-3d',
-                transform: `rotateY(${flipAngle}deg)`,
-              }}
-            >
-              {/* Front face — work image */}
+        {!isMobile && (
+          <div style={card(layerOpacity)}>
+            <div style={{ width: '100%', height: '100%', perspective: '1400px' }}>
               <div
                 style={{
-                  position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
-                  backfaceVisibility: 'hidden', transform: 'rotateY(0deg)',
+                  width: '100%', height: '100%', position: 'relative',
+                  transformStyle: 'preserve-3d',
+                  transform: `rotateY(${flipAngle}deg)`,
                 }}
               >
-                <img
-                  src={WORK_IMG}
-                  alt="UI/UX design work"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.35) 0%, transparent 60%)' }} />
-              </div>
+                {/* Front face — work image */}
+                <div
+                  style={{
+                    position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
+                    backfaceVisibility: 'hidden', transform: 'rotateY(0deg)',
+                  }}
+                >
+                  <img
+                    src={WORK_IMG}
+                    alt="UI/UX design work"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                  <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.35) 0%, transparent 60%)' }} />
+                </div>
 
-              {/* Back face — portrait, revealed once the flip passes edge-on */}
-              <div
-                style={{
-                  position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
-                  backfaceVisibility: 'hidden', transform: 'rotateY(180deg)',
-                }}
-              >
-                <img
-                  src={profilePhoto}
-                  alt="Priyadharshini R"
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
-                />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.4) 0%, transparent 55%)' }} />
+                {/* Back face — portrait, revealed once the flip passes edge-on */}
+                <div
+                  style={{
+                    position: 'absolute', inset: 0, borderRadius: 10, overflow: 'hidden',
+                    backfaceVisibility: 'hidden', transform: 'rotateY(180deg)',
+                  }}
+                >
+                  <img
+                    src={profilePhoto}
+                    alt="Priyadharshini R"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
+                  />
+                  <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.4) 0%, transparent 55%)' }} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   )

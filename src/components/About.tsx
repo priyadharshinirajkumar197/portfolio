@@ -40,10 +40,19 @@ export default function About() {
   const border = isDark ? '#17152B' : '#C5C8D0'
   const bg     = isDark ? '#121116' : '#F4F3F9'
 
+  // On mobile, don't pull the section up behind Services (avoids overlap)
+  const sectionStyle: React.CSSProperties = {
+    position: 'relative',
+    zIndex: 10,
+    background: bg,
+    borderTop: `1px solid ${border}`,
+    marginTop: 0,
+  }
+
   return (
     <section
       id="about"
-      style={{ marginTop: '-100vh', position: 'relative', zIndex: 10, background: bg, borderTop: `1px solid ${border}` }}
+      style={sectionStyle}
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-14 py-16 md:py-24">
         <div
