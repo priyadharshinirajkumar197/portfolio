@@ -34,10 +34,10 @@ export default function Experience() {
   const { ref, inView } = useInView()
   const isDark = useTheme()
 
-  const fg = isDark ? '#EEEDF8' : '#0E0F12'
-  const muted = isDark ? '#B9B7D1' : '#5E6170'
-  const border = isDark ? '#212136' : '#C5C8D0'
-  const accent = isDark ? '#A78BFA' : '#7C3AED'
+  const fg = isDark ? '#F8F7FC' : '#121116'
+  const muted = isDark ? '#9B8DFF' : '#6347D8'
+  const border = isDark ? '#17152B' : '#C5C8D0'
+  const accent = isDark ? '#6347D8' : '#6347D8'
 
   return (
     <section className="border-t" style={{ borderColor: border }}>

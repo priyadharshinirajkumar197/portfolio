@@ -135,12 +135,12 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
       : false
 
   // Colors
-  const fg = dark ? '#EEEDF8' : '#0E0F12'
-  const muted = dark ? '#B9B7D1' : '#5E6170'
-  const border = dark ? '#212136' : '#C5C8D0'
-  const bg = dark ? '#0B0B12' : '#F0F1F3'
-  const chevron = dark ? '#B9B7D1' : '#5E6170'
-  const accent = dark ? '#A78BFA' : '#7C3AED'
+  const fg = dark ? '#F8F7FC' : '#121116'
+  const muted = dark ? '#9B8DFF' : '#6347D8'
+  const border = dark ? '#17152B' : '#C5C8D0'
+  const bg = dark ? '#121116' : '#F4F3F9'
+  const chevron = dark ? '#9B8DFF' : '#6347D8'
+  const accent = dark ? '#6347D8' : '#6347D8'
 
   const isMobile = vp.w < 768
 
@@ -243,9 +243,9 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
               onClick={onToggleTheme}
               aria-label="Toggle dark/light mode"
               className="flex items-center rounded-full border cursor-pointer"
-              style={{ width: 44, height: 24, padding: '2px', background: dark ? '#181827' : '#C8CBD4', borderColor: border }}
+              style={{ width: 44, height: 24, padding: '2px', background: dark ? '#17152B' : '#C5C8D0', borderColor: border }}
             >
-              <div className="rounded-full" style={{ width: 20, height: 20, background: '#A78BFA' }} />
+              <div className="rounded-full" style={{ width: 20, height: 20, background: '#6347D8' }} />
             </button>
           </div>
         </section>
@@ -426,12 +426,12 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                 width: 44,
                 height: 24,
                 padding: '2px',
-                background: dark ? '#181827' : '#C8CBD4',
+                background: dark ? '#17152B' : '#C5C8D0',
                 borderColor: border,
                 justifyContent: dark ? 'flex-start' : 'flex-end',
               }}
             >
-              <div className="rounded-full flex-shrink-0" style={{ width: 20, height: 20, background: '#A78BFA' }} />
+              <div className="rounded-full flex-shrink-0" style={{ width: 20, height: 20, background: '#6347D8' }} />
             </button>
           </div>
         </div>
@@ -470,7 +470,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                         onClick={() => setOpenService(openService === i ? null : i)}
                       >
                         <span
-                          className="font-display font-black text-[16px] md:text-[19px] tracking-tight transition-colors duration-200 group-hover:text-[#A78BFA]"
+                          className="font-display font-black text-[16px] md:text-[19px] tracking-tight transition-colors duration-200 group-hover:text-[#6347D8]"
                           style={{ color: fg }}
                         >
                           {svc.num}. {svc.title}
@@ -560,7 +560,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Call Today :</p>
                     <a
                       href="tel:+919500017718"
-                      className="font-body text-[13px] hover:text-[#A78BFA] transition-colors"
+                      className="font-body text-[13px] hover:text-[#6347D8] transition-colors"
                       style={{ color: fg }}
                     >
                       +91 95000 17718
@@ -570,7 +570,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Email :</p>
                     <a
                       href="mailto:priyadharshinirajkumar87@gmail.com"
-                      className="font-body text-[13px] hover:text-[#A78BFA] transition-colors"
+                      className="font-body text-[13px] hover:text-[#6347D8] transition-colors"
                       style={{ color: fg }}
                     >
                       priyadharshinirajkumar87@gmail.com
@@ -592,7 +592,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="hover:text-[#A78BFA] transition-colors duration-200"
+                      className="hover:text-[#6347D8] transition-colors duration-200"
                       style={{ color: muted }}
                     >
                       {icon}
@@ -638,7 +638,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                 transformStyle: 'preserve-3d',
                 transform: `rotateY(${cardAngle}deg)`,
                 boxShadow: dark
-                  ? '0 24px 60px -12px rgba(0,0,0,0.7), 0 0 30px rgba(167,139,250,0.12)'
+                  ? '0 24px 60px -12px rgba(0,0,0,0.7), 0 0 30px rgba(99,71,216,0.12)'
                   : '0 24px 60px -12px rgba(0,0,0,0.18)',
                 borderRadius: 12,
               }}
@@ -653,7 +653,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(0deg)',
-                  background: dark ? '#13131F' : '#E2DFF5',
+                  background: dark ? '#17152B' : '#EDEDF9',
                 }}
               >
                 <img
@@ -672,8 +672,8 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     position: 'absolute',
                     inset: 0,
                     background: dark
-                      ? 'linear-gradient(to bottom, transparent 55%, rgba(11,11,18,0.45) 100%)'
-                      : 'linear-gradient(to bottom, transparent 55%, rgba(240,241,243,0.30) 100%)',
+                      ? 'linear-gradient(to bottom, transparent 55%, rgba(18,17,22,0.45) 100%)'
+                      : 'linear-gradient(to bottom, transparent 55%, rgba(244,243,249,0.30) 100%)',
                     pointerEvents: 'none',
                   }}
                 />
@@ -689,7 +689,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
-                  background: dark ? '#13131F' : '#E2DFF5',
+                  background: dark ? '#17152B' : '#EDEDF9',
                 }}
               >
                 <img
@@ -708,8 +708,8 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     position: 'absolute',
                     inset: 0,
                     background: dark
-                      ? 'linear-gradient(to bottom, transparent 40%, rgba(11,11,18,0.5) 100%)'
-                      : 'linear-gradient(to bottom, transparent 40%, rgba(240,241,243,0.35) 100%)',
+                      ? 'linear-gradient(to bottom, transparent 40%, rgba(18,17,22,0.5) 100%)'
+                      : 'linear-gradient(to bottom, transparent 40%, rgba(244,243,249,0.35) 100%)',
                     pointerEvents: 'none',
                   }}
                 />
@@ -745,7 +745,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
             pointerEvents: hiButtonOpacity > 0.3 ? 'auto' : 'none',
           }}
         >
-          <span className="font-display font-bold text-[#151515] text-[30px] leading-none" aria-hidden="true">Hi</span>
+          <span className="font-display font-bold text-[#121116] text-[30px] leading-none" aria-hidden="true">Hi</span>
         </a>
       </div>
     </div>

@@ -52,7 +52,7 @@ export const projects: Project[] = [
     platform: 'Web',
     tools: ['Figma', 'Adobe XD', 'Poppins'],
     image: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1400&h=900&fit=crop&auto=format',
-    accentColor: '#00E5FF',
+    accentColor: '#FF7A59',
     liveUrl: 'https://ev-care-nshp.vercel.app/',
     pdfUrl: evCarePDF,
   },
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     platform: 'Desktop',
     tools: ['Figma', 'Miro', 'Notion', 'Inter'],
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1400&h=900&fit=crop&auto=format',
-    accentColor: '#A78BFA',
+    accentColor: '#6347D8',
     liveUrl: 'https://bloodsync-ui.vercel.app/',
     pdfUrl: bloodSyncPDF,
   },
@@ -105,7 +105,7 @@ export default function App() {
 
   return (
     <ThemeContext.Provider value={isDark}>
-    <div className={`min-h-screen transition-colors duration-500 ${isDark ? 'bg-[#0B0B12] text-[#EEEDF8]' : 'bg-[#F0F1F3] text-[#0E0F12]'}`}>
+    <div className={`min-h-screen transition-colors duration-500 ${isDark ? 'bg-[#121116] text-[#F8F7FC]' : 'bg-[#F4F3F9] text-[#121116]'}`}>
       <Nav onNavigate={navigateTo} />
       <main>
         <IntroFlow isDark={isDark} onToggleTheme={toggleTheme} />

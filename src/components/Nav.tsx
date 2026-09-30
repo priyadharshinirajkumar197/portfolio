@@ -66,15 +66,15 @@ export default function Nav({ onNavigate }: NavProps) {
     { id: 'resume', label: 'Resume', action: () => scrollTo('resume') },
   ]
 
-  const pillBg     = isDark ? 'rgba(13,13,13,0.94)' : 'rgba(240,241,243,0.95)'
-  const borderCol  = isDark ? '#1D1D1D' : '#C5C8D0'
-  const linkFg     = isDark ? '#F1F0FA' : '#5E6170'
-  const fg         = isDark ? '#EEEDF8' : '#0E0F12'
-  const contactBg  = isDark ? '#EEEDF8' : '#0E0F12'
-  const contactFg  = isDark ? '#0B0B12' : '#EEEDF8'
-  const mobileBg   = isDark ? 'rgba(11,11,18,0.95)' : 'rgba(240,241,243,0.97)'
-  const hamburgerC = isDark ? '#EEEDF8' : '#0E0F12'
-  const accent     = isDark ? '#A78BFA' : '#7C3AED'
+  const pillBg     = isDark ? 'rgba(13,13,13,0.94)' : 'rgba(244,243,249,0.95)'
+  const borderCol  = isDark ? '#17152B' : '#C5C8D0'
+  const linkFg     = isDark ? '#F8F7FC' : '#6347D8'
+  const fg         = isDark ? '#F8F7FC' : '#121116'
+  const contactBg  = isDark ? '#F8F7FC' : '#121116'
+  const contactFg  = isDark ? '#121116' : '#F8F7FC'
+  const mobileBg   = isDark ? 'rgba(18,17,22,0.95)' : 'rgba(244,243,249,0.97)'
+  const hamburgerC = isDark ? '#F8F7FC' : '#121116'
+  const accent     = isDark ? '#6347D8' : '#6347D8'
 
   return (
     <>
@@ -103,7 +103,7 @@ export default function Nav({ onNavigate }: NavProps) {
             <button
               key={id}
               onClick={action}
-              className="font-body text-[13px] transition-colors duration-200 px-4 py-2 rounded-full hover:text-[#A78BFA]"
+              className="font-body text-[13px] transition-colors duration-200 px-4 py-2 rounded-full hover:text-[#6347D8]"
               style={{ color: activeSection === id ? accent : linkFg }}
               aria-current={activeSection === id ? 'page' : undefined}
             >
@@ -112,7 +112,7 @@ export default function Nav({ onNavigate }: NavProps) {
           ))}
           <button
             onClick={() => scrollTo('contact')}
-            className="font-body text-[13px] font-medium hover:bg-[#A78BFA] transition-colors duration-200 px-5 py-2 rounded-full ml-1"
+            className="font-body text-[13px] font-medium hover:bg-[#6347D8] transition-colors duration-200 px-5 py-2 rounded-full ml-1"
             style={{
               background: contactBg,
               color: contactFg,
@@ -143,7 +143,7 @@ export default function Nav({ onNavigate }: NavProps) {
             <img src={profilePhoto} alt="Priyadharshini R" className="w-full h-full object-cover object-top" />
           </div>
           <span className="font-body text-[12px]" style={{ color: fg }}>Available for work</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#A78BFA] animate-pulse flex-shrink-0" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#6347D8] animate-pulse flex-shrink-0" />
         </div>
 
       </nav>
@@ -181,7 +181,7 @@ export default function Nav({ onNavigate }: NavProps) {
               <button
                 key={id}
                 onClick={action}
-                className="font-body text-[15px] text-left hover:text-[#A78BFA] transition-colors"
+                className="font-body text-[15px] text-left hover:text-[#6347D8] transition-colors"
                 style={{ color: activeSection === id ? accent : linkFg }}
                 aria-current={activeSection === id ? 'page' : undefined}
               >
@@ -190,7 +190,7 @@ export default function Nav({ onNavigate }: NavProps) {
             ))}
             <button
               onClick={() => scrollTo('contact')}
-              className="font-body text-[15px] font-medium self-start hover:bg-[#A78BFA] transition-colors duration-200 px-5 py-2 rounded-full"
+              className="font-body text-[15px] font-medium self-start hover:bg-[#6347D8] transition-colors duration-200 px-5 py-2 rounded-full"
               style={{ background: contactBg, color: contactFg }}
             >
               Contact

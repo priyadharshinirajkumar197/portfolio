@@ -6,12 +6,12 @@ export default function ResumeCTA() {
   const { ref, inView } = useInView()
   const isDark = useTheme()
 
-  const fg = isDark ? '#EEEDF8' : '#0E0F12'
-  const muted = isDark ? '#B9B7D1' : '#5E6170'
-  const border = isDark ? '#212136' : '#C5C8D0'
-  const ctaBg = isDark ? '#13131F' : '#E8E6F5'
-  const accent = isDark ? '#A78BFA' : '#7C3AED'
-  const btnFg = isDark ? '#0B0B12' : '#FFFFFF'
+  const fg = isDark ? '#F8F7FC' : '#121116'
+  const muted = isDark ? '#9B8DFF' : '#6347D8'
+  const border = isDark ? '#17152B' : '#C5C8D0'
+  const ctaBg = isDark ? '#17152B' : '#EDEDF9'
+  const accent = isDark ? '#6347D8' : '#6347D8'
+  const btnFg = isDark ? '#121116' : '#F8F7FC'
 
   return (
     <section

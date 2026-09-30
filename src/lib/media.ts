@@ -8,11 +8,11 @@ export const WORK_IMG =
 // Inline SVG used as the placeholder when a remote thumbnail fails to load, so
 // a blocked Unsplash request degrades to a themed gradient panel instead of a
 // broken-image icon. Same 1400x900 ratio as the Unsplash URLs it replaces.
-export function placeholderImage(accent = '#A78BFA', id = 'g') {
+export function placeholderImage(accent = '#6347D8', id = 'g') {
   const svg =
     `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">` +
     `<defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">` +
-    `<stop offset="0%" stop-color="#16161F"/><stop offset="100%" stop-color="#0B0B12"/>` +
+    `<stop offset="0%" stop-color="#17152B"/><stop offset="100%" stop-color="#121116"/>` +
     `</linearGradient></defs>` +
     `<rect width="1400" height="900" fill="url(#${id})"/>` +
     `<circle cx="700" cy="450" r="200" fill="none" stroke="${accent}" stroke-opacity="0.35" stroke-width="2"/>` +

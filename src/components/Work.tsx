@@ -27,11 +27,11 @@ function ProjectCard({
   const cardRef = useRef<HTMLElement | null>(null)
   const isDark = useTheme()
 
-  const fg = isDark ? '#EEEDF8' : '#0E0F12'
-  const muted = isDark ? '#B9B7D1' : '#5E6170'
-  const border = isDark ? '#212136' : '#C5C8D0'
-  const cardBg = isDark ? '#13131F' : '#FFFFFF'
-  const accent = isDark ? '#A78BFA' : '#7C3AED'
+  const fg = isDark ? '#F8F7FC' : '#121116'
+  const muted = isDark ? '#9B8DFF' : '#6347D8'
+  const border = isDark ? '#17152B' : '#C5C8D0'
+  const cardBg = isDark ? '#17152B' : '#F8F7FC'
+  const accent = isDark ? '#6347D8' : '#6347D8'
 
   useEffect(() => {
     let frame = 0
@@ -81,7 +81,7 @@ function ProjectCard({
       <div
         className="absolute inset-0 overflow-hidden"
         style={{
-          background: isDark ? '#13131F' : '#E8E9EE',
+          background: isDark ? '#17152B' : '#F8F7FC',
         }}
       >
         <img
@@ -99,7 +99,7 @@ function ProjectCard({
 
       <div className="relative z-10 flex min-h-[inherit] h-full items-center justify-center px-6 py-12 text-center">
         <div className="max-w-3xl flex flex-col items-center">
-          <span className="font-mono text-[10px] tracking-[0.18em] rounded-full px-3 py-1.5 mb-5" style={{ color: '#16131f', background: accent }}>
+          <span className="font-mono text-[10px] tracking-[0.18em] rounded-full px-3 py-1.5 mb-5" style={{ color: '#17152B', background: accent }}>
             {project.category.toUpperCase()}
           </span>
           <h3 className="font-display font-black text-[clamp(1.9rem,5vw,4.8rem)] leading-[0.92] tracking-[-0.045em] text-white">
@@ -110,7 +110,7 @@ function ProjectCard({
           </p>
           <div className="mt-7 flex items-center gap-4">
             <span className="font-mono text-[10px] tracking-[0.16em] text-white/65">{project.year}</span>
-            <span className="flex items-center justify-center w-11 h-11 rounded-full transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" style={{ background: accent, color: '#16131f' }}>
+            <span className="flex items-center justify-center w-11 h-11 rounded-full transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" style={{ background: accent, color: '#17152B' }}>
               <svg className="w-4 h-4" fill="none" viewBox="0 0 16 16">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -126,9 +126,9 @@ export default function Work({ projects, onOpenProject }: WorkProps) {
   const { ref: headRef, inView: headInView } = useInView()
   const isDark = useTheme()
 
-  const fg = isDark ? '#EEEDF8' : '#0E0F12'
-  const muted = isDark ? '#B9B7D1' : '#5E6170'
-  const border = isDark ? '#212136' : '#C5C8D0'
+  const fg = isDark ? '#F8F7FC' : '#121116'
+  const muted = isDark ? '#9B8DFF' : '#6347D8'
+  const border = isDark ? '#17152B' : '#C5C8D0'
 
   return (
     <section id="work" className="border-t" style={{ borderColor: border }}>

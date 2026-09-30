@@ -88,11 +88,11 @@ export default function Services() {
   const TILT_REST = 15
   const flipAngle = TILT_REST + flipT * 180
 
-  const bg      = isDark ? '#0B0B12' : '#F0F1F3'
-  const fg      = isDark ? '#EEEDF8' : '#0E0F12'
-  const muted   = isDark ? '#B9B7D1' : '#5E6170'
-  const border  = isDark ? '#212136' : '#C5C8D0'
-  const chevron = isDark ? '#B9B7D1' : '#6F7280'
+  const bg      = isDark ? '#121116' : '#F4F3F9'
+  const fg      = isDark ? '#F8F7FC' : '#121116'
+  const muted   = isDark ? '#9B8DFF' : '#6347D8'
+  const border  = isDark ? '#17152B' : '#C5C8D0'
+  const chevron = isDark ? '#9B8DFF' : '#9B8DFF'
 
   const card = (opacity: number): React.CSSProperties => ({
     position: 'absolute',
@@ -145,7 +145,7 @@ export default function Services() {
                       onClick={() => setOpen(open === i ? null : i)}
                     >
                       <span
-                        className="font-display font-black text-[17px] md:text-[20px] tracking-tight transition-colors duration-200 group-hover:text-[#A78BFA]"
+                        className="font-display font-black text-[17px] md:text-[20px] tracking-tight transition-colors duration-200 group-hover:text-[#6347D8]"
                         style={{ color: fg }}
                       >
                         {svc.num}. {svc.title}
@@ -200,7 +200,7 @@ export default function Services() {
                   alt="UI/UX design work"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(11,11,18,0.35) 0%, transparent 60%)' }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.35) 0%, transparent 60%)' }} />
               </div>
 
               {/* Back face — portrait, revealed once the flip passes edge-on */}
@@ -215,7 +215,7 @@ export default function Services() {
                   alt="Priyadharshini R"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', display: 'block' }}
                 />
-                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(11,11,18,0.4) 0%, transparent 55%)' }} />
+                <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(18,17,22,0.4) 0%, transparent 55%)' }} />
               </div>
             </div>
           </div>
