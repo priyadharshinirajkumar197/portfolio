@@ -50,15 +50,15 @@ export default function CareerTimeline() {
   const { ref, inView } = useInView()
   const isDark = useTheme()
 
-  const fg = isDark ? '#F8F7FC' : '#121116'
-  const muted = isDark ? '#9B8DFF' : '#6347D8'
-  const border = isDark ? '#17152B' : '#C5C8D0'
-  const hoverBg = isDark ? '#17152B' : '#F8F7FC'
-  const accent = isDark ? '#6347D8' : '#6347D8'
+  const fg = isDark ? '#EEEDF8' : '#0E0F12'
+  const muted = isDark ? '#B9B7D1' : '#5E6170'
+  const border = isDark ? '#212136' : '#C5C8D0'
+  const hoverBg = isDark ? '#13131F' : '#E8E9EE'
+  const accent = isDark ? '#A78BFA' : '#7C3AED'
 
   const typeColor: Record<string, string> = {
     OPEN: accent,
-    PROJECT: isDark ? '#9B8DFF' : '#FF7A59',
+    PROJECT: isDark ? '#B9B7D1' : '#FF7A59',
     CERTIFICATION: isDark ? '#FF7A59' : '#FF7A59',
     EDUCATION: muted,
   }

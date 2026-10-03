@@ -1,6 +1,6 @@
 import { useInView } from '../hooks/useInView'
 import { useTheme } from '../ThemeContext'
-import profilePhoto from '@/imports/WhatsApp_Image_2026-08-20_at_09.32.58.jpeg'
+import profilePhoto from '@/imports/profile.png'
 
 const stats = [
   { value: '2',  label: 'Years of Experience' },
@@ -35,10 +35,10 @@ export default function About() {
   const isDark = useTheme()
   const { ref, inView } = useInView()
 
-  const fg     = isDark ? '#F8F7FC' : '#121116'
-  const muted  = isDark ? '#9B8DFF' : '#6347D8'
-  const border = isDark ? '#17152B' : '#C5C8D0'
-  const bg     = isDark ? '#121116' : '#F4F3F9'
+  const fg     = isDark ? '#EEEDF8' : '#0E0F12'
+  const muted  = isDark ? '#B9B7D1' : '#5E6170'
+  const border = isDark ? '#212136' : '#C5C8D0'
+  const bg     = isDark ? '#0B0B12' : '#F0F1F3'
 
   // On mobile, don't pull the section up behind Services (avoids overlap)
   const sectionStyle: React.CSSProperties = {
@@ -78,7 +78,7 @@ export default function About() {
             <div className="flex gap-10 flex-wrap">
               {stats.map(({ value, label }) => (
                 <div key={label}>
-                  <p className="font-display font-black leading-none tracking-tighter text-[#6347D8]" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+                  <p className="font-display font-black leading-none tracking-tighter text-[#A78BFA]" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
                     {value}
                   </p>
                   <p className="font-body text-[12px] mt-1" style={{ color: muted }}>{label}</p>
@@ -90,13 +90,13 @@ export default function About() {
             <div className="flex flex-col sm:flex-row gap-8">
               <div>
                 <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Call Today :</p>
-                <a href="tel:+919500017718" className="font-body text-[13px] hover:text-[#6347D8] transition-colors" style={{ color: fg }}>
+                <a href="tel:+919500017718" className="font-body text-[13px] hover:text-[#A78BFA] transition-colors" style={{ color: fg }}>
                   +91 95000 17718
                 </a>
               </div>
               <div>
                 <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Email :</p>
-                <a href="mailto:priyadharshinirajkumar87@gmail.com" className="font-body text-[13px] hover:text-[#6347D8] transition-colors" style={{ color: fg }}>
+                <a href="mailto:priyadharshinirajkumar87@gmail.com" className="font-body text-[13px] hover:text-[#A78BFA] transition-colors" style={{ color: fg }}>
                   priyadharshinirajkumar87@gmail.com
                 </a>
               </div>
@@ -116,7 +116,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="hover:text-[#6347D8] transition-colors duration-200"
+                  className="hover:text-[#A78BFA] transition-colors duration-200"
                   style={{ color: muted }}
                 >
                   {icon}
@@ -138,7 +138,7 @@ export default function About() {
                 alt="Priyadharshini R — UI/UX Designer"
                 className="w-full h-full object-cover object-top"
               />
-              <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to top, ${isDark ? 'rgba(18,17,22,0.5)' : 'rgba(244,243,249,0.3)'} 0%, transparent 50%)` }} />
+              <div className="absolute inset-0 pointer-events-none" style={{ background: `linear-gradient(to top, ${isDark ? 'rgba(11,11,18,0.5)' : 'rgba(240,241,243,0.3)'} 0%, transparent 50%)` }} />
             </div>
           </div>
 

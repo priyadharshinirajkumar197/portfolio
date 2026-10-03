@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from '../ThemeContext'
-import profilePhoto from '@/imports/WhatsApp_Image_2026-08-20_at_09.32.58.jpeg'
+import profilePhoto from '@/imports/profile.png'
 import { WORK_IMG } from '../lib/media'
 
 function easeInOut(t: number) {
@@ -135,12 +135,12 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
       : false
 
   // Colors
-  const fg = dark ? '#F8F7FC' : '#121116'
-  const muted = dark ? '#9B8DFF' : '#6347D8'
-  const border = dark ? '#17152B' : '#C5C8D0'
-  const bg = dark ? '#121116' : '#F4F3F9'
-  const chevron = dark ? '#9B8DFF' : '#6347D8'
-  const accent = dark ? '#6347D8' : '#6347D8'
+  const fg = dark ? '#EEEDF8' : '#0E0F12'
+  const muted = dark ? '#B9B7D1' : '#5E6170'
+  const border = dark ? '#212136' : '#C5C8D0'
+  const bg = dark ? '#0B0B12' : '#F0F1F3'
+  const chevron = dark ? '#B9B7D1' : '#5E6170'
+  const accent = dark ? '#A78BFA' : '#7C3AED'
 
   const isMobile = vp.w < 768
 
@@ -220,6 +220,21 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
   // "Hi" button in Hero fades out cleanly as transition begins
   const hiButtonOpacity = clamp01(1 - t1 * 2.5) * (mounted ? 1 : 0)
 
+  // Mobile: static card styles for in-flow rendering in each stage
+  const mobileCardStyle: React.CSSProperties = {
+    width: '100%',
+    maxWidth: 320,
+    aspectRatio: '3/4',
+    borderRadius: 12,
+    overflow: 'hidden',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+
+  // Mobile: determine which face to show based on scroll progress
+  // Services stage (p 0.46-0.58): show WORK_IMG; About stage (p 0.58-0.90): show WORK_IMG; else portrait
+  const showWorkImage = p >= 0.46 && p <= 0.90
+
   if (reducedMotion) {
     // Accessible fallback: sequential static sections
     return (
@@ -243,7 +258,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
               onClick={onToggleTheme}
               aria-label="Toggle dark/light mode"
               className="flex items-center rounded-full border cursor-pointer"
-              style={{ width: 44, height: 24, padding: '2px', background: dark ? '#17152B' : '#C5C8D0', borderColor: border }}
+              style={{ width: 44, height: 24, padding: '2px', background: dark ? '#181827' : '#C8CBD4', borderColor: border }}
             >
               <div className="rounded-full" style={{ width: 20, height: 20, background: '#6347D8' }} />
             </button>
@@ -399,7 +414,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
           )}
 
           {/* MOBILE stacked title */}
-          {isMobile && (
+{isMobile && p < 0.46 && (
             <div className="absolute bottom-20 left-0 right-0 flex flex-col items-center text-center">
               <h1
                 className="hero-display leading-none"
@@ -408,9 +423,9 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                 UI/UX<br />DESIGNER
               </h1>
             </div>
-          )}
-
-          {/* SCROLL HINT + THEME TOGGLE */}
+)}
+ 
+{/* SCROLL HINT + THEME TOGGLE */}
           <div
             className="absolute bottom-7 left-1/2 -translate-x-1/2 flex items-center gap-3 transition-opacity duration-300"
             style={{ opacity: clamp01(1 - p * 8) }}
@@ -426,7 +441,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                 width: 44,
                 height: 24,
                 padding: '2px',
-                background: dark ? '#17152B' : '#C5C8D0',
+                background: dark ? '#181827' : '#C8CBD4',
                 borderColor: border,
                 justifyContent: dark ? 'flex-start' : 'flex-end',
               }}
@@ -434,11 +449,118 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
               <div className="rounded-full flex-shrink-0" style={{ width: 20, height: 20, background: '#6347D8' }} />
             </button>
           </div>
-        </div>
+</div>
 
-        {/* ═════════════════════════════════════════════════════════════════════
+        {/* MOBILE: inline 3D card in normal flow — AFTER Hero container, before Stage 2 */}
+        {isMobile && p < 0.46 && (
+          <div
+            className="relative mx-auto"
+            style={{
+              width: 'min(82vw, 340px)',
+              aspectRatio: '3 / 4',
+              marginTop: '32px',
+              marginBottom: '24px',
+            }}
+          >
+            <div style={{ width: '100%', height: '100%', perspective: '1400px' }}>
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  position: 'relative',
+                  transformStyle: 'preserve-3d',
+                  transform: showWorkImage ? 'rotateY(180deg)' : 'rotateY(0deg)',
+boxShadow: dark
+                      ? '0 24px 60px -12px rgba(0,0,0,0.7), 0 0 30px rgba(167,139,250,0.12)'
+                      : '0 24px 60px -12px rgba(0,0,0,0.18)',
+                  borderRadius: 12,
+                }}
+              >
+                {/* Front Face: Portrait Photo */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(0deg)',
+                    background: dark ? '#13131F' : '#E2DFF5',
+                  }}
+                >
+                  <img
+                    src={profilePhoto}
+                    alt="Priyadharshini R"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center 10%',
+                      display: 'block',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: dark
+                        ? 'linear-gradient(to bottom, transparent 55%, rgba(11,11,18,0.45) 100%)'
+                        : 'linear-gradient(to bottom, transparent 55%, rgba(240,241,243,0.30) 100%)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                </div>
+
+                {/* Back Face: Work Image */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: 12,
+                    overflow: 'hidden',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)',
+                    background: dark ? '#13131F' : '#E2DFF5',
+                  }}
+                >
+                  <img
+                    src={WORK_IMG}
+                    alt="UI/UX design work"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center center',
+                      display: 'block',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      background: dark
+                        ? 'linear-gradient(to bottom, transparent 40%, rgba(11,11,18,0.5) 100%)'
+                        : 'linear-gradient(to bottom, transparent 40%, rgba(240,241,243,0.35) 100%)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+                  <div
+                    className="absolute bottom-4 left-4 font-mono text-[10px] tracking-[0.18em]"
+                    style={{ color: 'rgba(255,255,255,0.7)' }}
+                  >
+                    DESIGN WORK
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ══════════════════════════════════════════════════════════════════
             STAGE 2: SERVICES ("WHAT I CAN DO FOR YOU")
-        ═════════════════════════════════════════════════════════════════════ */}
+        ══════════════════════════════════════════════════════════════════════ */}
         <div
           className="absolute inset-0 flex items-center"
           style={{
@@ -470,7 +592,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                         onClick={() => setOpenService(openService === i ? null : i)}
                       >
                         <span
-                          className="font-display font-black text-[16px] md:text-[19px] tracking-tight transition-colors duration-200 group-hover:text-[#6347D8]"
+                          className="font-display font-black text-[16px] md:text-[19px] tracking-tight transition-colors duration-200 group-hover:text-[#A78BFA]"
                           style={{ color: fg }}
                         >
                           {svc.num}. {svc.title}
@@ -560,7 +682,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Call Today :</p>
                     <a
                       href="tel:+919500017718"
-                      className="font-body text-[13px] hover:text-[#6347D8] transition-colors"
+                      className="font-body text-[13px] hover:text-[#A78BFA] transition-colors"
                       style={{ color: fg }}
                     >
                       +91 95000 17718
@@ -570,7 +692,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     <p className="font-body text-[12px] mb-1" style={{ color: muted }}>Email :</p>
                     <a
                       href="mailto:priyadharshinirajkumar87@gmail.com"
-                      className="font-body text-[13px] hover:text-[#6347D8] transition-colors"
+                      className="font-body text-[13px] hover:text-[#A78BFA] transition-colors"
                       style={{ color: fg }}
                     >
                       priyadharshinirajkumar87@gmail.com
@@ -592,7 +714,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={label}
-                      className="hover:text-[#6347D8] transition-colors duration-200"
+                      className="hover:text-[#A78BFA] transition-colors duration-200"
                       style={{ color: muted }}
                     >
                       {icon}
@@ -608,14 +730,9 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
         </div>
 
         {/* ═════════════════════════════════════════════════════════════════════
-            THE CONTINUOUS 3D PERSISTENT CARD (NEVER FADES!)
-            - Hero: Centered with portrait photo facing forward.
-            - Scroll into Services: Glides right across screen & rotates 3D
-              to reveal WORK_IMG on the back face.
-            - Scroll into About Me: Rotates 3D back from WORK_IMG to portraitPhoto.
-            - ZERO opacity fading in between!
-        ═════════════════════════════════════════════════════════════════════ */}
-        <div
+THE CONTINUOUS 3D PERSISTENT CARD (NEVER FADES!) — DESKTOP ONLY */}
+        {!isMobile && (
+          <div
           style={{
             position: 'absolute',
             top: 0,
@@ -638,7 +755,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                 transformStyle: 'preserve-3d',
                 transform: `rotateY(${cardAngle}deg)`,
                 boxShadow: dark
-                  ? '0 24px 60px -12px rgba(0,0,0,0.7), 0 0 30px rgba(99,71,216,0.12)'
+                  ? '0 24px 60px -12px rgba(0,0,0,0.7), 0 0 30px rgba(167,139,250,0.12)'
                   : '0 24px 60px -12px rgba(0,0,0,0.18)',
                 borderRadius: 12,
               }}
@@ -653,7 +770,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(0deg)',
-                  background: dark ? '#17152B' : '#EDEDF9',
+                  background: dark ? '#13131F' : '#E2DFF5',
                 }}
               >
                 <img
@@ -672,8 +789,8 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     position: 'absolute',
                     inset: 0,
                     background: dark
-                      ? 'linear-gradient(to bottom, transparent 55%, rgba(18,17,22,0.45) 100%)'
-                      : 'linear-gradient(to bottom, transparent 55%, rgba(244,243,249,0.30) 100%)',
+                      ? 'linear-gradient(to bottom, transparent 55%, rgba(11,11,18,0.45) 100%)'
+                      : 'linear-gradient(to bottom, transparent 55%, rgba(240,241,243,0.30) 100%)',
                     pointerEvents: 'none',
                   }}
                 />
@@ -689,7 +806,7 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                   backfaceVisibility: 'hidden',
                   WebkitBackfaceVisibility: 'hidden',
                   transform: 'rotateY(180deg)',
-                  background: dark ? '#17152B' : '#EDEDF9',
+                  background: dark ? '#13131F' : '#E2DFF5',
                 }}
               >
                 <img
@@ -708,8 +825,8 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
                     position: 'absolute',
                     inset: 0,
                     background: dark
-                      ? 'linear-gradient(to bottom, transparent 40%, rgba(18,17,22,0.5) 100%)'
-                      : 'linear-gradient(to bottom, transparent 40%, rgba(244,243,249,0.35) 100%)',
+                      ? 'linear-gradient(to bottom, transparent 40%, rgba(11,11,18,0.5) 100%)'
+                      : 'linear-gradient(to bottom, transparent 40%, rgba(240,241,243,0.35) 100%)',
                     pointerEvents: 'none',
                   }}
                 />
@@ -723,15 +840,17 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
             </div>
           </div>
         </div>
+        )}
 
-        {/* ── HI BUTTON (Accompanying the card in Hero) ────────────────────── */}
-        <a
+        {/* ── HI BUTTON (Accompanying the card in Hero) — DESKTOP ONLY ────────────────────── */}
+        {!isMobile && (
+          <a
           href="#contact"
           onClick={(e) => {
             e.preventDefault()
             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
           }}
-            className="group flex items-center justify-center rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer select-none"
+          className="group flex items-center justify-center rounded-full hover:scale-105 transition-transform duration-200 cursor-pointer select-none"
           style={{
             position: 'absolute',
             top: currentCardY + photoH - 54,
@@ -745,8 +864,9 @@ export default function IntroFlow({ isDark, onToggleTheme }: IntroFlowProps) {
             pointerEvents: hiButtonOpacity > 0.3 ? 'auto' : 'none',
           }}
         >
-          <span className="font-display font-bold text-[#121116] text-[30px] leading-none" aria-hidden="true">Hi</span>
+          <span className="font-display font-bold text-[#0B0B12] text-[30px] leading-none" aria-hidden="true">Hi</span>
         </a>
+        )}
       </div>
     </div>
   )

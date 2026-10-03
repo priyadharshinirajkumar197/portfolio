@@ -1,0 +1,10 @@
+{
+  "description": "This web application offers a user-friendly platform for creating and managing travel itineraries, helping travelers organize their trips efficiently.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

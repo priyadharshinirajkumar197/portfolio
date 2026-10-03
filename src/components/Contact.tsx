@@ -11,12 +11,12 @@ export default function Contact() {
   const [error, setError] = useState('')
   const [company, setCompany] = useState('')
 
-  const fg = isDark ? '#F8F7FC' : '#121116'
-  const muted = isDark ? '#9B8DFF' : '#6347D8'
-  const border = isDark ? '#17152B' : '#C5C8D0'
-  const inputBg = isDark ? '#17152B' : '#F8F7FC'
-  const accent = isDark ? '#6347D8' : '#6347D8'
-  const btnFg = isDark ? '#121116' : '#F8F7FC'
+  const fg = isDark ? '#EEEDF8' : '#0E0F12'
+  const muted = isDark ? '#B9B7D1' : '#5E6170'
+  const border = isDark ? '#212136' : '#C5C8D0'
+  const inputBg = isDark ? '#13131F' : '#FFFFFF'
+  const accent = isDark ? '#A78BFA' : '#7C3AED'
+  const btnFg = isDark ? '#0B0B12' : '#FFFFFF'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -104,7 +104,7 @@ export default function Contact() {
             {sent ? (
               <div
                 className="border p-10 text-center h-full flex flex-col items-center justify-center gap-3"
-                style={{ borderColor: accent, background: isDark ? 'rgba(99,71,216,0.05)' : 'rgba(124,58,237,0.05)' }}
+                style={{ borderColor: accent, background: isDark ? 'rgba(167,139,250,0.05)' : 'rgba(124,58,237,0.05)' }}
               >
                 <span className="font-mono text-[10px] tracking-[0.25em] font-semibold" style={{ color: accent }}>
                   MESSAGE SENT

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import profilePhoto from '@/imports/WhatsApp_Image_2026-08-20_at_09.32.58.jpeg'
+import profilePhoto from '@/imports/profile.png'
 import { WORK_IMG } from '../lib/media'
 
 function easeInOut(t: number) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t }
@@ -125,10 +125,10 @@ export default function Hero({ isDark, onToggleTheme }: HeroProps) {
   }
 
   // ── Theme ──────────────────────────────────────────────────────────
-  const fg     = isDark ? '#F8F7FC' : '#121116'
-  const muted  = isDark ? '#9B8DFF' : '#6347D8'
-  const border = isDark ? '#17152B' : '#C5C8D0'
-  const bg     = isDark ? '#121116' : '#F4F3F9'
+  const fg     = isDark ? '#EEEDF8' : '#0E0F12'
+  const muted  = isDark ? '#B9B7D1' : '#5E6170'
+  const border = isDark ? '#212136' : '#C5C8D0'
+  const bg     = isDark ? '#0B0B12' : '#F0F1F3'
 
   // Outer positioned card — travels via translateX/Y, fades only at the
   // very end for the Services handoff. The flip itself happens inside.
@@ -273,7 +273,7 @@ export default function Hero({ isDark, onToggleTheme }: HeroProps) {
             className="flex items-center rounded-full border transition-all duration-300 cursor-pointer flex-shrink-0"
             style={{
               width: 44, height: 24, padding: '2px',
-              background:   isDark ? '#17152B' : '#C5C8D0',
+              background:   isDark ? '#181827' : '#C8CBD4',
               borderColor:  border,
               justifyContent: isDark ? 'flex-start' : 'flex-end',
             }}
@@ -323,7 +323,7 @@ export default function Hero({ isDark, onToggleTheme }: HeroProps) {
                   alt="Priyadharshini R"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 8%', display: 'block' }}
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(18,17,22,0.45) 100%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(11,11,18,0.45) 100%)', pointerEvents: 'none' }} />
               </div>
 
               {/* Back face — UI/UX work image, revealed once the flip passes edge-on */}
@@ -338,7 +338,7 @@ export default function Hero({ isDark, onToggleTheme }: HeroProps) {
                   alt="UI/UX design work"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center center', display: 'block' }}
                 />
-                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(18,17,22,0.5) 100%)', pointerEvents: 'none' }} />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(11,11,18,0.5) 100%)', pointerEvents: 'none' }} />
                 <div
                   className="absolute bottom-4 left-4 font-mono text-[10px] tracking-[0.18em]"
                   style={{ color: 'rgba(255,255,255,0.55)', opacity: clamp01((flipT - 0.5) * 2) }}
@@ -354,20 +354,20 @@ export default function Hero({ isDark, onToggleTheme }: HeroProps) {
         <a
           href="#contact"
           onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}
-          className="group flex items-center justify-center rounded-full bg-[#6347D8] hover:scale-105 transition-transform duration-200 cursor-pointer"
+          className="group flex items-center justify-center rounded-full bg-[#A78BFA] hover:scale-105 transition-transform duration-200 cursor-pointer"
           style={{
             position: 'absolute',
             top:   photoTop + photoH - 54,
             left:  photoLeft - 38,
             zIndex: 25,
             width: 76, height: 76,
-            boxShadow:  '0 8px 32px rgba(99,71,216,0.25)',
+            boxShadow:  '0 8px 32px rgba(167,139,250,0.25)',
             opacity:    cardOpacity,
             transform:  `translate3d(${moveX}px, ${moveY}px, 0)`,
             transition: scrolling ? 'none' : 'opacity 0.8s ease 0.45s',
           }}
         >
-          <span className="font-display font-black text-[#121116] text-[22px] leading-none">Hi</span>
+          <span className="font-display font-black text-[#0B0B12] text-[22px] leading-none">Hi</span>
         </a>
 
       </div>
